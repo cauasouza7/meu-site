@@ -17,37 +17,61 @@ body {
   color: white;
 }
 
-/* HEADER */
-header {
+/* NAVBAR */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #020617;
+  padding: 15px;
   text-align: center;
-  padding: 60px 20px;
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .foto {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 3px solid #38bdf8;
   object-fit: cover;
-  transition: 0.3s;
 }
 
-.foto:hover {
-  transform: scale(1.1);
-}
-
-h1 {
+.hero h1 {
   margin-top: 15px;
-  font-size: 32px;
+  font-size: 36px;
 }
 
-p {
+.hero p {
   color: #cbd5e1;
 }
 
-/* SECTIONS */
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #38bdf8;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* SEÇÕES */
 section {
-  padding: 50px 20px;
+  padding: 80px 20px;
   text-align: center;
 }
 
@@ -68,25 +92,19 @@ section {
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
 }
 
-/* BOTÃO */
-.btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background: #38bdf8;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
+/* ANIMAÇÃO */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s;
 }
 
-.btn:hover {
-  background: #0ea5e9;
-  transform: scale(1.05);
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
@@ -100,66 +118,70 @@ footer {
 
 <body>
 
-<header>
+<nav>
+  <a href="#home">Início</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#projetos">Projetos</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<div class="hero" id="home">
   <img src="foto.jpg" class="foto">
   <h1>Cauã Souza</h1>
   <p>Desenvolvedor em formação 💻</p>
-</header>
+  <a href="#projetos" class="btn">Ver projetos</a>
+</div>
 
-<section>
+<section id="sobre" class="hidden">
   <h2>Sobre mim</h2>
   <p>
     Buscando minha primeira oportunidade na área de tecnologia.
-    Estou evoluindo através de projetos práticos e estudos constantes.
+    Evoluindo com projetos práticos e estudo constante.
   </p>
 </section>
 
-<section>
+<section id="projetos" class="hidden">
   <h2>Projetos</h2>
 
   <div class="projetos">
-
     <div class="card">
-      <h3>To-Do List Avançado</h3>
-      <p>Gerenciador de tarefas com filtros e armazenamento</p>
-      <a class="btn" href="https://cauasouza7.github.io/todo-list-avancado">
-        Ver projeto
-      </a>
+      <h3>To-Do Avançado</h3>
+      <a href="https://cauasouza7.github.io/todo-list-avancado">Ver</a>
     </div>
 
     <div class="card">
       <h3>Calculadora Pro</h3>
-      <p>Calculadora com histórico, teclado e tema</p>
-      <a class="btn" href="https://cauasouza7.github.io/calculadora-pro">
-        Ver projeto
-      </a>
+      <a href="https://cauasouza7.github.io/calculadora-pro">Ver</a>
     </div>
 
     <div class="card">
       <h3>LoveMatch</h3>
-      <p>App estilo Tinder com swipe e animações</p>
-      <a class="btn" href="https://cauasouza7.github.io/love-match">
-        Ver projeto
-      </a>
+      <a href="https://cauasouza7.github.io/love-match">Ver</a>
     </div>
-
   </div>
 </section>
 
-<section>
-  <h2>Tecnologias</h2>
-  <p>HTML | CSS | JavaScript</p>
-</section>
-
-<section>
+<section id="contato" class="hidden">
   <h2>Contato</h2>
-  <p>Email: cauavitorsouzaleite@gmail.com</p>
-  <p>Telefone: (87)999174859</p>
+  <p>Email: seuemail@email.com</p>
 </section>
 
 <footer>
   <p>© 2026 - Cauã Souza</p>
 </footer>
+
+<script>
+const elements = document.querySelectorAll(".hidden");
+
+window.addEventListener("scroll", () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      el.classList.add("show");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
